@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 import com.hannesdorfmann.mosby.mvp.viewstate.RestorableViewState;
 import com.hannesdorfmann.mosby.sample.R;
@@ -28,6 +27,7 @@ import com.hannesdorfmann.mosby.sample.mvp.model.custom.A;
 import com.hannesdorfmann.mosby.sample.mvp.model.custom.B;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -62,7 +62,7 @@ public class MyCustomActivity extends MvpViewStateActivity<MyCustomView, MyCusto
     vs.setShowingA(true);
     vs.setData(a);
     aView.setText(a.getName());
-    aView.setVisibility(View.VISIBLE);
+    aView.setVisibility(View.VISIBLE) ;
     bView.setVisibility(View.GONE);
   }
 

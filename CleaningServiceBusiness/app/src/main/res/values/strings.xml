@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">CleaningServiceBusiness</string>
+    <string name="loginScreenTitle">Login</string>
+
+    <string name="login_activity_email_label">Email:</string>
+    <string name="login_activity_email_edittext">Enter login</string>
+    <string name="login_activity_password_label">Password:</string>
+    <string name="login_activity_password_edittext">Enter password</string>
+    <string name="login_activity_button_login">Log In</string>
+
+    <string name="wrong_data_error">Check data</string>
+    <string name="cant_login">Can\'t perform login action</string>
+    <string name="appKey">d09ddf33d9d540ebbcd8eb738a5ff1d6</string>
+    <string name="clientKey">9f27eaf9dd7742bb972c048525afdb08</string>
+    <string name="masterKey">0952dd1a84fb4c41989634ad858fc6de</string>
+
+    <string name="shared_prefs_userinfo">com.peterstaranchuk.cleaningservice.user_info</string>
+    <string name="shared_prefs_key_username">com.peterstaranchuk.cleaningservice.USERNAME</string>
+    <string name="shared_prefs_key_userid">com.peterstaranchuk.cleaningservice.USERID</string>
+    <string name="clean_service_business">Clean Service \n (Business version)</string>
+
+    <string name="login_activity_password_repeat_edittext">Repeat password</string>
+    <string name="login_activity_repeat_password_label">Repeat password</string>
+    <string name="login_activity_user_name_label">User name:</string>
+    <string name="login_activity_user_name_edittext">Enter user name</string>
+    <string name="errorDuringRegister">Error during register process.</string>
+    <string name="notMatchPasswords">Passwords are not match</string>
+
+    <string name="fieldUsername">username</string>
+
+</resources>
