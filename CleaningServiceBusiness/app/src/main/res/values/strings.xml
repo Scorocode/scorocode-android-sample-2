@@ -63,5 +63,5 @@
     <string name="completedMessage">You will get your money in your credit card in next 8 hours.</string>
     <string name="areYouSureCompletedMessage">Are you sure the order is completed? When you will finish this order you can\'t come back to it later</string>
     <string name="no">No</string>
-    <string name="setstate">Set %s state</string>
+    <string name="setstate">Set \%s state</string>
 </resources>

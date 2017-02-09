@@ -27,7 +27,7 @@ public class OrderDetailPresenter {
         DocumentInfo orderData = model.getOrderData(intent);
         DocumentInfo userData = model.getUserData();
         view.setOrderData(orderData, userData);
-        view.setOrdersStatus(model.getCurrentOrderStatus());
+        view.setOrdersStatus(model.getOrderStatusStringFrom(model.getCurrentOrderStatus()));
     }
 
     public void onSetNextStatusButtonClicked() {
@@ -37,8 +37,8 @@ public class OrderDetailPresenter {
             public void onDocumentSaved() {
                 int newStatus = model.getCurrentOrderStatus();
 
-                view.setOrdersStatus(newStatus);
-                view.setStateButtonText(newStatus);
+                view.setOrdersStatus(model.getOrderStatusStringFrom(newStatus));
+                view.setStateButtonText(model.getOrderStatusStringFrom(newStatus+1));
 
                 if(newStatus > OrderDetailModel.STATUS_ACCEPTED) {
                     view.setUndoButtonVisible();
@@ -49,7 +49,7 @@ public class OrderDetailPresenter {
 
             @Override
             public void onDocumentSaveFailed(String errorCode, String errorMessage) {
-                view.setOrdersStatus(-1);
+                view.setOrdersStatus(model.getOrderStatusStringFrom(OrderDetailModel.STATUS_ERROR));
             }
         };
 
@@ -73,13 +73,14 @@ public class OrderDetailPresenter {
             @Override
             public void onDocumentSaved() {
                 int newStatus = model.getCurrentOrderStatus();
+                String statusString = model.getOrderStatusStringFrom(newStatus);
 
-                view.setOrdersStatus(newStatus);
+                view.setOrdersStatus(statusString);
                 if(newStatus == OrderDetailModel.STATUS_ACCEPTED) {
                     view.disableUndoButton();
                 }
 
-                view.setStateButtonText(newStatus);
+                view.setStateButtonText(statusString);
             }
 
             @Override

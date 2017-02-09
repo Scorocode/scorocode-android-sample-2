@@ -80,8 +80,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     }
 
     @Override
-    public void setOrdersStatus(int ordersStatus) {
-        tvOrderStatus.setText(textOrderStatus + " " + getOrderStatus(ordersStatus));
+    public void setOrdersStatus(String ordersStatus) {
+        tvOrderStatus.setText(textOrderStatus + " " + ordersStatus);
     }
 
     @Override
@@ -101,8 +101,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     }
 
     @Override
-    public void setStateButtonText(int status) {
-        String text = String.format(getString(R.string.setstate), getOrderStatus(status + 1));
+    public void setStateButtonText(String status) {
+        String text = String.format(getString(R.string.setstate) + status);
         btnAccept.setText(text);
     }
 
@@ -134,18 +134,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
                         finish();
                     }
                 }).show();
-    }
-
-
-    public String getOrderStatus(int code) {
-        switch (code) {
-            case OrderDetailModel.STATUS_PLACED: return getString(R.string.status_placed);
-            case OrderDetailModel.STATUS_ACCEPTED: return getString(R.string.status_accepted);
-            case OrderDetailModel.STATUS_IN_PROGRESS: return getString(R.string.status_inprogress);
-            case OrderDetailModel.STATUS_COMPLETE: return getString(R.string.status_completed);
-        }
-
-        return getString(R.string.status_error);
     }
 
     @OnClick(R.id.btnAccept)

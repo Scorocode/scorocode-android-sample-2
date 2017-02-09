@@ -17,10 +17,12 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
  */
 
 public class OrderDetailModel {
+    public static final int STATUS_ERROR = -1;
     public static final int STATUS_PLACED = 0;
     public static final int STATUS_ACCEPTED = 1;
     public static final int STATUS_IN_PROGRESS = 2;
     public static final int STATUS_COMPLETE = 3;
+
     private Context context;
     private int currentStatus;
 
@@ -67,6 +69,16 @@ public class OrderDetailModel {
         });
     }
 
+    public String getOrderStatusStringFrom(int code) {
+        switch (code) {
+            case OrderDetailModel.STATUS_PLACED: return context.getString(R.string.status_placed);
+            case OrderDetailModel.STATUS_ACCEPTED: return context.getString(R.string.status_accepted);
+            case OrderDetailModel.STATUS_IN_PROGRESS: return context.getString(R.string.status_inprogress);
+            case OrderDetailModel.STATUS_COMPLETE: return context.getString(R.string.status_completed);
+        }
+
+        return context.getString(R.string.status_error);
+    }
 
     public int getCurrentOrderStatus() {
         return currentStatus;

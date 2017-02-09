@@ -14,7 +14,7 @@ public interface OrderDetailView {
 
     void setInitialValues();
 
-    void setOrdersStatus(int ordersStatus);
+    void setOrdersStatus(String ordersStatus);
 
     void setCompleteState();
 
@@ -24,7 +24,7 @@ public interface OrderDetailView {
 
     void disableUndoButton();
 
-    void setStateButtonText(int status);
+    void setStateButtonText(String status);
 
     void showCompletedDialog();
 }
