@@ -4,7 +4,7 @@ package com.peterstaranchuk.cleaningservicebusiness.dagger2modules;
 import com.peterstaranchuk.cleaningservicebusiness.activities.LoginActivity;
 import com.peterstaranchuk.cleaningservicebusiness.model.LoginScreenModel;
 import com.peterstaranchuk.cleaningservicebusiness.presenter.LoginScreenPresenter;
-import com.peterstaranchuk.cleaningservicebusiness.view.LoginScreenView;
+import com.peterstaranchuk.cleaningservicebusiness.view.LoginActivityView;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,7 +16,7 @@ import rx.functions.Action1;
 
 @Module
 public class LoginScreenModule {
-    private LoginScreenView view;
+    private LoginActivityView view;
 
     public LoginScreenModule(LoginActivity loginActivity) {
         this.view = loginActivity;

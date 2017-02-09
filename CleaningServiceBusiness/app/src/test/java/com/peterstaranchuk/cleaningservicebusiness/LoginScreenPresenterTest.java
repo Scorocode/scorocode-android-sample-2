@@ -3,7 +3,7 @@ package com.peterstaranchuk.cleaningservicebusiness;
 
 import com.peterstaranchuk.cleaningservicebusiness.model.LoginScreenModel;
 import com.peterstaranchuk.cleaningservicebusiness.presenter.LoginScreenPresenter;
-import com.peterstaranchuk.cleaningservicebusiness.view.LoginScreenView;
+import com.peterstaranchuk.cleaningservicebusiness.view.LoginActivityView;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +11,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import ru.profit_group.scorocode_sdk.Callbacks.CallbackLoginUser;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -21,7 +25,8 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class LoginScreenPresenterTest {
-    @Mock LoginScreenView view;
+    @Mock
+    LoginActivityView view;
     @Mock LoginScreenModel model;
     private LoginScreenPresenter presenter;
 
@@ -39,7 +44,7 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).getEmail();
         verify(view).getPassword();
-        verify(model).loginUser(anyString(), anyString());
+        verify(model).loginUser(anyString(), anyString(), any(CallbackLoginUser.class));
     }
 
     @Test
@@ -51,7 +56,7 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).getEmail();
         verify(view).getPassword();
-        verify(model).handleError();
+        verify(view).showError(anyInt());
     }
 
     @Test

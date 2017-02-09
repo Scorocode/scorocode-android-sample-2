@@ -1,10 +1,12 @@
 package com.peterstaranchuk.cleaningservicebusiness.helpers;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
+import com.peterstaranchuk.cleaningservicebusiness.objects.LocalPersistence;
+
+import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
 
 /**
@@ -13,37 +15,42 @@ import com.peterstaranchuk.cleaningservicebusiness.R;
 
 public class DataStoreHelper {
     private final Context context;
-    private final SharedPreferences sharedPreferences;
+    private DocumentInfo userInfo;
 
     public DataStoreHelper(Context context) {
         this.context = context;
-        this.sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_prefs_userinfo), Context.MODE_PRIVATE);
     }
 
-    public void storeUserName(String userName) {
-        sharedPreferences.edit()
-                .putString(context.getString(R.string.shared_prefs_key_username), userName)
-                .apply();
+
+    public void storeUserInfo(DocumentInfo userInfo) {
+        LocalPersistence.witeObjectToFile(context, userInfo, LocalPersistence.FILE_USER_INFO);
     }
 
-    public void storeUserId(String userId) {
-        sharedPreferences.edit()
-                .putString(context.getString(R.string.shared_prefs_key_userid), userId)
-                .apply();
+    public DocumentInfo getUserInfo() {
+        if(userInfo != null) {
+            return userInfo;
+        }
+
+        return (DocumentInfo) LocalPersistence.readObjectFromFile(context, LocalPersistence.FILE_USER_INFO);
     }
 
     public void clearUserData() {
-        storeUserId("");
-        storeUserName("");
+        storeUserInfo(new DocumentInfo());
     }
 
     @NonNull
     public String getUserName() {
-        return sharedPreferences.getString(context.getString(R.string.shared_prefs_key_username), "");
+        return String.valueOf(getUserInfo().get(context.getString(R.string.key_username)));
     }
 
     @NonNull
     public String getUserId() {
-        return sharedPreferences.getString(context.getString(R.string.shared_prefs_key_userid), "");
+        return String.valueOf(getUserInfo().get(context.getString(R.string.key_user_id)));
     }
+
+    @NonNull
+    public String getUserPhone() {
+        return String.valueOf(getUserInfo().get(context.getString(R.string.key_user_phone)));
+    }
+
 }

@@ -8,24 +8,60 @@
     <string name="login_activity_password_edittext">Enter password</string>
     <string name="login_activity_button_login">Log In</string>
 
-    <string name="wrong_data_error">Check data</string>
     <string name="cant_login">Can\'t perform login action</string>
     <string name="appKey">d09ddf33d9d540ebbcd8eb738a5ff1d6</string>
     <string name="clientKey">9f27eaf9dd7742bb972c048525afdb08</string>
     <string name="masterKey">0952dd1a84fb4c41989634ad858fc6de</string>
 
     <string name="shared_prefs_userinfo">com.peterstaranchuk.cleaningservice.user_info</string>
-    <string name="shared_prefs_key_username">com.peterstaranchuk.cleaningservice.USERNAME</string>
-    <string name="shared_prefs_key_userid">com.peterstaranchuk.cleaningservice.USERID</string>
+    <string name="key_username">com.peterstaranchuk.cleaningservice.USERNAME</string>
+    <string name="key_user_id">com.peterstaranchuk.cleaningservice.USERID</string>
     <string name="clean_service_business">Clean Service \n (Business version)</string>
 
     <string name="login_activity_password_repeat_edittext">Repeat password</string>
     <string name="login_activity_repeat_password_label">Repeat password</string>
     <string name="login_activity_user_name_label">User name:</string>
     <string name="login_activity_user_name_edittext">Enter user name</string>
-    <string name="errorDuringRegister">Error during register process.</string>
-    <string name="notMatchPasswords">Passwords are not match</string>
 
     <string name="fieldUsername">username</string>
+    <string name="isEmployeeField">isEmployee</string>
+    <string name="ordersCollection">orders</string>
+    <string name="orderStatusField">orderStatus</string>
+    <string name="cant_getOrders">error during orders loading</string>
+    <string name="order_item_number">Order number:</string>
+    <string name="order_item_placed_at">Placed at:</string>
+    <string name="createdAtField">createdAt</string>
 
+    <string name="status_placed">placed</string>
+    <string name="status_accepted">accepted</string>
+    <string name="status_inprogress">in progress</string>
+    <string name="status_completed">completed</string>
+    <string name="status_error">can\'t get status. Please, call to our office.</string>
+    <string name="textOrderStatus">Order status:</string>
+    <string name="order_price">Order price:</string>
+    <string name="orderPriceField">orderPrice</string>
+    <string name="currencySign">$</string>
+    <string name="key_user_phone">phone</string>
+    <string name="textUserPhone">User phone:</string>
+    <string name="textUserAddress">User address:</string>
+    <string name="textUserName">User name:</string>
+    <string name="fieldUserName">userName</string>
+    <string name="fieldPhone">phone</string>
+    <string name="fieldAddress">address</string>
+    <string name="fieldOrderPrice">orderPrice</string>
+    <string name="fieldCreatedAt">createdAt</string>
+    <string name="fieldOrderStatus">orderStatus</string>
+    <string name="btnTextAccept">accept</string>
+    <string name="undoStatus">Undo status</string>
+    <string name="btnTextComplete">Complete</string>
+    <string name="cancel">cancel</string>
+    <string name="sure">Yes, I am sure</string>
+    <string name="warningMessage">Are you sure you want to accept this order. After you click accept you can\'t decline it</string>
+    <string name="warningTitle">WARNING</string>
+    <string name="ok">ok</string>
+    <string name="completedTitle">Order completed</string>
+    <string name="completedMessage">You will get your money in your credit card in next 8 hours.</string>
+    <string name="areYouSureCompletedMessage">Are you sure the order is completed? When you will finish this order you can\'t come back to it later</string>
+    <string name="no">No</string>
+    <string name="setstate">Set %s state</string>
 </resources>

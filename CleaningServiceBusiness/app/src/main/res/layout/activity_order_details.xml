@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_order_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.peterstaranchuk.cleaningservicebusiness.activities.OrderDetailsActivity">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvUserPhone"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvUserAddress"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvOrderPrice"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvPlacedAt"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvOrderStatus"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/btnAccept"
+                style="@style/button"
+                android:layout_marginTop="32dp" />
+
+            <Button
+                android:id="@+id/btnUndoStatus"
+                style="@style/button"
+                android:text="@string/undoStatus"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/holo_red_dark" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

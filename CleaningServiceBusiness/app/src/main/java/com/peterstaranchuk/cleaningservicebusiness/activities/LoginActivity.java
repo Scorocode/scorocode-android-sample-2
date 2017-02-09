@@ -7,12 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.dagger2components.LoginScreenComponent;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservicebusiness.presenter.LoginScreenPresenter;
-import com.peterstaranchuk.cleaningservicebusiness.view.LoginScreenView;
+import com.peterstaranchuk.cleaningservicebusiness.view.LoginActivityView;
 
 import javax.inject.Inject;
 
@@ -22,7 +23,7 @@ import butterknife.OnClick;
 import ru.profit_group.scorocode_sdk.ScorocodeSdk;
 import rx.functions.Action1;
 
-public class LoginActivity extends AppCompatActivity implements LoginScreenView {
+public class LoginActivity extends AppCompatActivity implements LoginActivityView {
 
     @BindView(R.id.etEmail) EditText etEmail;
     @BindView(R.id.etPassword) EditText etPassword;
@@ -45,6 +46,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         );
 
         presenter.onCreateScreen();
+
+        etEmail.setText("ps@gmail.com");
+        etPassword.setText("peter555");
     }
 
     @OnClick(R.id.btnLogin)
@@ -94,6 +98,16 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.loginScreenTitle));
         }
+    }
+
+    @Override
+    public void showError(int errorId) {
+        Toast.makeText(this, getString(errorId), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayMainActivity() {
+        OrdersActivity.display(this);
     }
 
     public static void display(Context context) {

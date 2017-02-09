@@ -31,13 +31,24 @@ public class InputHelper {
         return false;
     }
 
-    public static void enableButton(Button button) {
+    public static void enableButton(Button button, int colorId) {
         //we extract this method for case if we will need to
         //change behaviour or appearance of all enabled buttons in app
         if(button != null) {
             button.setEnabled(true);
-            button.setBackgroundColor(button.getResources().getColor(R.color.mainColor));
+            if(colorId != 0) {
+                button.setBackgroundColor(button.getResources().getColor(colorId));
+            } else {
+                button.setBackgroundColor(button.getResources().getColor(R.color.mainColor));
+            }
         }
+    }
+
+
+    public static void enableButton(Button button) {
+        //we extract this method for case if we will need to
+        //change behaviour or appearance of all enabled buttons in app
+        enableButton(button, 0);
     }
 
     public static void disableButton(Button button) {

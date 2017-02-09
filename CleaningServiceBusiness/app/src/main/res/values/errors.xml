@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="only_employees">You can login only with employee account</string>
+    <string name="wrong_data_error">Check data</string>
+    <string name="errorDuringRegister">Error during register process.</string>
+    <string name="notMatchPasswords">Passwords are not match</string>
+
+</resources>

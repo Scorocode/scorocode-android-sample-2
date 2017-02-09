@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:padding="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvOrderNumber"
+                style="@style/labelStyle"
+                android:text="@string/order_item_number" />
+
+            <TextView
+                android:id="@+id/tvOrderPlaceTime"
+                style="@style/labelStyle"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/order_item_placed_at" />
+
+            <TextView
+                android:id="@+id/tvOrderPrice"
+                style="@style/labelStyle"
+                android:layout_marginTop="8dp"
+                android:text="@string/order_price" />
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

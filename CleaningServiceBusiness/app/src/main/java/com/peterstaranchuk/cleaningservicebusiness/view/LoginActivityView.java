@@ -6,7 +6,7 @@ import android.content.Context;
  * Created by Peter Staranchuk.
  */
 
-public interface LoginScreenView {
+public interface LoginActivityView {
 
     String getEmail();
 
@@ -23,4 +23,8 @@ public interface LoginScreenView {
     void setItemsVisibility();
 
     void setActionBar();
+
+    void showError(int errorId);
+
+    void displayMainActivity();
 }
