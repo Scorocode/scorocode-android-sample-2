@@ -29,7 +29,7 @@
     <string name="orderStatusField">orderStatus</string>
     <string name="cant_getOrders">error during orders loading</string>
     <string name="order_item_number">Order number:</string>
-    <string name="order_item_placed_at">Placed at:</string>
+    <string name="placed_at">Placed at:</string>
     <string name="createdAtField">createdAt</string>
 
     <string name="status_placed">placed</string>
@@ -46,12 +46,12 @@
     <string name="textUserAddress">User address:</string>
     <string name="textUserName">User name:</string>
     <string name="fieldUserName">userName</string>
-    <string name="fieldPhone">phone</string>
+    <string name="fieldContactPhone">contactPhone</string>
     <string name="fieldAddress">address</string>
     <string name="fieldOrderPrice">orderPrice</string>
     <string name="fieldCreatedAt">createdAt</string>
     <string name="fieldOrderStatus">orderStatus</string>
-    <string name="btnTextAccept">accept</string>
+    <string name="btnTextAccept">ACCEPT</string>
     <string name="undoStatus">Undo status</string>
     <string name="btnTextComplete">Complete</string>
     <string name="cancel">cancel</string>
@@ -63,5 +63,8 @@
     <string name="completedMessage">You will get your money in your credit card in next 8 hours.</string>
     <string name="areYouSureCompletedMessage">Are you sure the order is completed? When you will finish this order you can\'t come back to it later</string>
     <string name="no">No</string>
-    <string name="setstate">Set \%s state</string>
+    <string name="setstate">Set %1$s state</string>
+    <string name="login">Login</string>
+    <string name="userDetails">USER DETAILS</string>
+    <string name="orderDetails">ORDER DETAILS</string>
 </resources>

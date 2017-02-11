@@ -7,5 +7,25 @@
     <color name="disabledButtonColor">#BDBDBD</color>
     <color name="itemPressed">#00695C</color>
     <color name="darkerGray">#555555</color>
+    <color name="black_effective">#2a2a2a</color>
+
+    <!--bg colors-->
+    <!--Design colors-->
+    <color name="red_dark">#388E3C</color>
+    <color name="red_dark2">#1B5E20</color>
+    <color name="cyan_light">#00C853</color>
+    <color name="cyan">#B9F6CA</color>
+    <color name="cyan_dark">#00C853</color>
+    <color name="navy_blue">#00695C</color>
+    <color name="navy_blue_dark">#004D40</color>
+    <color name="light_green">#78DC96</color>
+    <color name="light_blue">#55C8F0</color>
+    <color name="blue_black_dark">#13171d</color>
+    <color name="blue_black_light">#516179</color>
+    <color name="blue_grey_light">#33691E</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#fff44f</color>
+    <color name="black">#000000</color>
+    <color name="delimiterColor">@color/darkerGray</color>
 
 </resources>

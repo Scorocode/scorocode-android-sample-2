@@ -4,5 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="house_picture_size">120dp</dimen>
     <dimen name="login_activity_margin">16dp</dimen>
+    <dimen name="capsLabelTextSize">14sp</dimen>
+    <dimen name="order_item_text_margin">4dp</dimen>
 
 </resources>

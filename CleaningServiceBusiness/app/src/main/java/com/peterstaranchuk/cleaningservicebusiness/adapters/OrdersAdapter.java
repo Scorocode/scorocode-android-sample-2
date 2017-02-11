@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FieldHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FormatHelper;
+import com.peterstaranchuk.cleaningservicebusiness.helpers.TextHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class OrdersAdapter extends BaseAdapter {
         this.layoutRes = layoutRes;
 
         this.textOrderNumber = context.getString(R.string.order_item_number);
-        this.textOrderPlacedAt = context.getString(R.string.order_item_placed_at);
+        this.textOrderPlacedAt = context.getString(R.string.placed_at);
         this.textOrderPrice = context.getString(R.string.order_price);
         this.textCurrencySign = context.getString(R.string.currencySign);
     }
@@ -83,17 +84,16 @@ public class OrdersAdapter extends BaseAdapter {
         String placedAt = fieldHelper.getPlacedAt(order);
         String orderPrice = FormatHelper.formatMoney(fieldHelper.getOrderPriceFrom(order));
 
+        TextHelper.setBlackAndGreyText(holder.tvOrderPrice, textOrderPrice, orderPrice + " " + textCurrencySign, "\n");
 
-        holder.tvOrderNumber.setText(textOrderNumber + " " + (position + 1));
-        holder.tvOrderPlaceTime.setText(textOrderPlacedAt + "\n" + FormatHelper.getFormattedDate(context, placedAt) + " " + FormatHelper.getFormattedTime(context, placedAt));
-        holder.tvOrderPrice.setText(String.valueOf(textOrderPrice + " " + orderPrice + " " + textCurrencySign));
+        String dateAndTime = FormatHelper.getFormattedDate(context, placedAt) + " " + FormatHelper.getFormattedTime(context, placedAt);
+        TextHelper.setBlackAndGreyText(holder.tvOrderPlaceTime, textOrderPlacedAt, dateAndTime, "\n");
 
         return view;
     }
 
 
     static class ViewHolder {
-        @BindView(R.id.tvOrderNumber) TextView tvOrderNumber;
         @BindView(R.id.tvOrderPlaceTime) TextView tvOrderPlaceTime;
         @BindView(R.id.tvOrderPrice) TextView tvOrderPrice;
 

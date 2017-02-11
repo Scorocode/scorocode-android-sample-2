@@ -20,6 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class OrdersActivity extends AppCompatActivity implements OrdersListActivityView {
 
@@ -65,6 +66,11 @@ public class OrdersActivity extends AppCompatActivity implements OrdersListActiv
     @Override
     public void openOrderDetailsActivity(DocumentInfo orderInfo) {
         OrderDetailsActivity.display(this, orderInfo);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
 

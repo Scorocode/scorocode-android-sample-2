@@ -89,7 +89,7 @@ public class OrderDetailPresenter {
             }
         };
 
-        if(status > 1) {
+        if(status > OrderDetailModel.STATUS_ACCEPTED) {
             model.setPreviousStatus(orderId, callbackDocumentSaved);
         }
 
