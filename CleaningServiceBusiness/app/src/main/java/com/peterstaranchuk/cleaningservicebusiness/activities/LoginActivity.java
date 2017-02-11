@@ -47,6 +47,9 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
         );
 
         presenter.onCreateScreen();
+
+        etEmail.setText("ps@gmail.com");
+        etPassword.setText("peter555");
     }
 
     @OnClick(R.id.btnLogin)

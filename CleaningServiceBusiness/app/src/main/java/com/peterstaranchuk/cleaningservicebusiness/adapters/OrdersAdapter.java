@@ -1,16 +1,18 @@
 package com.peterstaranchuk.cleaningservicebusiness.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FieldHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FormatHelper;
-import com.peterstaranchuk.cleaningservicebusiness.helpers.TextHelper;
+import com.peterstaranchuk.cleaningservicebusiness.model.OrderDetailModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +33,6 @@ public class OrdersAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private int layoutRes;
 
-    private String textOrderNumber;
-    private String textOrderPlacedAt;
-    private String textOrderPrice;
     private String textCurrencySign;
 
     public OrdersAdapter(Context context, List<DocumentInfo> orders, int layoutRes) {
@@ -41,10 +40,6 @@ public class OrdersAdapter extends BaseAdapter {
         this.inflater = LayoutInflater.from(context);
         this.orders = (orders == null? new ArrayList<DocumentInfo>() : orders);
         this.layoutRes = layoutRes;
-
-        this.textOrderNumber = context.getString(R.string.order_item_number);
-        this.textOrderPlacedAt = context.getString(R.string.placed_at);
-        this.textOrderPrice = context.getString(R.string.order_price);
         this.textCurrencySign = context.getString(R.string.currencySign);
     }
 
@@ -83,19 +78,49 @@ public class OrdersAdapter extends BaseAdapter {
         FieldHelper fieldHelper = new FieldHelper(context);
         String placedAt = fieldHelper.getPlacedAt(order);
         String orderPrice = FormatHelper.formatMoney(fieldHelper.getOrderPriceFrom(order));
+        int orderStatus = order.getInteger(context.getString(R.string.orderStatusField));
 
-        TextHelper.setBlackAndGreyText(holder.tvOrderPrice, textOrderPrice, orderPrice + " " + textCurrencySign, "\n");
+        holder.tvOrderPrice.setText(orderPrice + " " + textCurrencySign);
+        holder.tvOrderPlaceTime.setText(getDateAndTime(placedAt));
 
-        String dateAndTime = FormatHelper.getFormattedDate(context, placedAt) + " " + FormatHelper.getFormattedTime(context, placedAt);
-        TextHelper.setBlackAndGreyText(holder.tvOrderPlaceTime, textOrderPlacedAt, dateAndTime, "\n");
+        setIcon(holder, orderStatus);
 
         return view;
     }
 
+    private void setIcon(ViewHolder holder, int orderStatus) {
+        int drawableId = 0;
+        switch (orderStatus) {
+            case OrderDetailModel.STATUS_PLACED:
+                drawableId = R.drawable.ic_fiber_new_black_24dp;
+                break;
+
+            case OrderDetailModel.STATUS_ACCEPTED:
+                drawableId = R.drawable.ic_content_paste_black_24dp;
+                break;
+
+            case OrderDetailModel.STATUS_IN_PROGRESS:
+                drawableId = R.drawable.ic_event_note_black_24dp;
+                break;
+        }
+
+        if(drawableId != 0) {
+            holder.ivStatus.setVisibility(View.VISIBLE);
+            holder.ivStatus.setBackground(context.getResources().getDrawable(drawableId));
+        } else {
+            holder.ivStatus.setVisibility(View.GONE);
+        }
+    }
+
+    @NonNull
+    private String getDateAndTime(String placedAt) {
+        return FormatHelper.getFormattedDate(context, placedAt) + " " + FormatHelper.getFormattedTime(context, placedAt);
+    }
 
     static class ViewHolder {
         @BindView(R.id.tvOrderPlaceTime) TextView tvOrderPlaceTime;
         @BindView(R.id.tvOrderPrice) TextView tvOrderPrice;
+        @BindView(R.id.ivStatus) ImageView ivStatus;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

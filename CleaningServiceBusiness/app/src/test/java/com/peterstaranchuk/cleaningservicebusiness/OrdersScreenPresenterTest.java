@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackFindDocument;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
@@ -40,6 +42,7 @@ public class OrdersScreenPresenterTest {
 
         //than
         verify(model).getOrdersList(any(CallbackFindDocument.class));
+        verify(model).filterList(new ArrayList<DocumentInfo>());
 //        verify(view).refreshOrdersList(new ArrayList<DocumentInfo>());
     }
 

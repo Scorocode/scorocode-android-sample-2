@@ -14,9 +14,7 @@ public interface OrderDetailView {
 
     void setInitialState();
 
-    void setOrdersStatus(String ordersStatus);
-
-    void setCompleteState();
+    void setOrdersStatus(int orderStatusCode);
 
     Intent getIntent();
 
@@ -29,4 +27,22 @@ public interface OrderDetailView {
     void showWarrantDialog();
 
     void setActionBar();
+
+    void openPhoneScreen();
+
+    void openMapScreen();
+
+    void expandOrCollapseUserSection();
+
+    void expandOrCollapseOrderSection();
+
+    void expandOrCollapseAdditionalInfoSection();
+
+    void showMoneyConfirmationDialog();
+
+    void setStatusComplete();
+
+    void showError(int error);
+
+    void showAcceptWarrantDialog();
 }

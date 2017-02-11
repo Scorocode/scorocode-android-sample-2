@@ -29,8 +29,6 @@ public class FormatHelper {
     }
 
     public static String formatMoney(String price) {
-
-
         return new DecimalFormat("#.##").format(price);
     }
 }

@@ -2,6 +2,7 @@ package com.peterstaranchuk.cleaningservicebusiness.presenter;
 
 import android.content.Intent;
 
+import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.model.OrderDetailModel;
 import com.peterstaranchuk.cleaningservicebusiness.view.OrderDetailView;
 
@@ -22,78 +23,55 @@ public class OrderDetailPresenter {
     }
 
     public void onCreate(Intent intent) {
+        DocumentInfo orderData = model.getOrderData(intent);
+        DocumentInfo userData = model.getUserData();
+
+        model.setInitialState(orderData);
+
         view.setInitialState();
         view.setActionBar();
 
-        DocumentInfo orderData = model.getOrderData(intent);
-        DocumentInfo userData = model.getUserData();
         view.setOrderData(orderData, userData);
-        view.setOrdersStatus(model.getOrderStatusStringFrom(model.getCurrentOrderStatus()));
+        view.setOrdersStatus(model.getCurrentOrderStatus());
     }
 
     public void onSetNextStatusButtonClicked() {
-
         CallbackDocumentSaved callbackDocumentSaved = new CallbackDocumentSaved() {
             @Override
             public void onDocumentSaved() {
-                int newStatus = model.getCurrentOrderStatus();
-
-                view.setOrdersStatus(model.getOrderStatusStringFrom(newStatus));
-                view.setStateButtonText(model.getOrderStatusStringFrom(newStatus+1));
-
-                if(newStatus > OrderDetailModel.STATUS_ACCEPTED) {
-                    view.setUndoButtonVisible();
+                if(model.getCurrentOrderStatus() == OrderDetailModel.STATUS_COMPLETE) {
+                    view.showWarrantDialog();
                 } else {
-                    view.disableUndoButton();
+                    view.setOrdersStatus(model.getCurrentOrderStatus());
                 }
             }
 
             @Override
             public void onDocumentSaveFailed(String errorCode, String errorMessage) {
-                view.setOrdersStatus(model.getOrderStatusStringFrom(OrderDetailModel.STATUS_ERROR));
+                view.setOrdersStatus(OrderDetailModel.STATUS_ERROR);
             }
         };
 
-        final int status = model.getCurrentOrderStatus();
         String orderId = model.getOrderData(view.getIntent()).getId();
-
-        if(status < OrderDetailModel.STATUS_IN_PROGRESS) {
-            model.setNextStatus(orderId, callbackDocumentSaved);
-        } else {
-            view.showWarrantDialog();
-        }
-
-
+        model.setNextStatus(orderId, callbackDocumentSaved);
     }
 
     public void onUndoStatusButtonClicked() {
-        int status = model.getCurrentOrderStatus();
         String orderId = model.getOrderData(view.getIntent()).getId();
 
         CallbackDocumentSaved callbackDocumentSaved = new CallbackDocumentSaved() {
             @Override
             public void onDocumentSaved() {
-                int newStatus = model.getCurrentOrderStatus();
-                String statusString = model.getOrderStatusStringFrom(newStatus);
-
-                view.setOrdersStatus(statusString);
-                if(newStatus == OrderDetailModel.STATUS_ACCEPTED) {
-                    view.disableUndoButton();
-                }
-
-                view.setStateButtonText(statusString);
+                view.setOrdersStatus(model.getCurrentOrderStatus());
             }
 
             @Override
             public void onDocumentSaveFailed(String errorCode, String errorMessage) {
-
+                view.showError(R.string.errorDuringStatusChange);
             }
         };
 
-        if(status > OrderDetailModel.STATUS_ACCEPTED) {
-            model.setPreviousStatus(orderId, callbackDocumentSaved);
-        }
-
+        model.setPreviousStatus(orderId, callbackDocumentSaved);
     }
 
     public int getCurrentStatus() {
@@ -101,18 +79,27 @@ public class OrderDetailPresenter {
     }
 
     public void setOrderCompletedState() {
-        String orderId = model.getOrderData(view.getIntent()).getId();
+        view.showMoneyConfirmationDialog();
+        view.setStatusComplete();
+    }
 
-        model.setNextStatus(orderId, new CallbackDocumentSaved() {
-            @Override
-            public void onDocumentSaved() {
+    public void onPhoneButtonClicked() {
+        view.openPhoneScreen();
+    }
 
-            }
+    public void onMapButtonClicked() {
+        view.openMapScreen();
+    }
 
-            @Override
-            public void onDocumentSaveFailed(String errorCode, String errorMessage) {
+    public void onUserSectionButtonClicked() {
+        view.expandOrCollapseUserSection();
+    }
 
-            }
-        });
+    public void onOrderSectionButtonClicked() {
+        view.expandOrCollapseOrderSection();
+    }
+
+    public void onAdditionalInfoSectionButtonClicked() {
+        view.expandOrCollapseAdditionalInfoSection();
     }
 }

@@ -34,22 +34,26 @@
 
                     <TextView
                         style="@style/sectionTitle"
-                        android:text="@string/userDetails" />
+                        android:text="@string/userDetails"
+                        android:id="@+id/textView" />
 
                     <ImageView
                         android:id="@+id/ivExpandUserDetails"
-                        style="@style/sectionIcons" />
+                        style="@style/sectionIcons"
+                        android:layout_alignTop="@+id/textView"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/llUserSection"
+                <LinearLayout android:id="@+id/llUserSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout style="@style/order_info_linear_layout">
+                    <LinearLayout
+                        style="@style/order_info_linear_layout">
 
                         <TextView
                             style="@style/labelStyle"
@@ -60,28 +64,64 @@
                             style="@style/orderItemGray" />
                     </LinearLayout>
 
-                    <LinearLayout style="@style/order_info_linear_layout">
 
-                        <TextView
-                            style="@style/labelStyle"
-                            android:text="@string/textUserPhone" />
+                        <LinearLayout
+                            style="@style/order_info_linear_layout">
 
-                        <TextView
-                            android:id="@+id/tvUserPhone"
-                            style="@style/orderItemGray" />
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/textUserPhone" />
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tvUserPhone"
+                                style="@style/orderItemGray" />
 
-                    <LinearLayout style="@style/order_info_linear_layout">
+                            <LinearLayout
+                                android:gravity="right|end"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                        <TextView
-                            style="@style/labelStyle"
-                            android:text="@string/textUserAddress" />
+                                <ImageView
+                                    android:id="@+id/ivCall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_call_black_24dp" />
 
-                        <TextView
-                            android:id="@+id/tvUserAddress"
-                            style="@style/orderItemGray" />
-                    </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            style="@style/order_info_linear_layout">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/labelStyle"
+                                    android:text="@string/textUserAddress" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/tvUserAddress"
+                                    android:paddingRight="32dp"
+                                    style="@style/orderItemGray" />
+
+                            </LinearLayout>
+
+                           <ImageView
+                                    android:id="@+id/ivMap"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_place_black_24dp" />
+
+
+                        </RelativeLayout>
 
                 </LinearLayout>
 
@@ -225,9 +265,9 @@
 
                 <View
                     android:id="@+id/vDelimiter"
-                    android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
                     android:background="@color/delimiterColor" />
 
                 <Button

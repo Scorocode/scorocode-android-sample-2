@@ -3,6 +3,7 @@ package com.peterstaranchuk.cleaningservicebusiness.helpers;
 import android.support.annotation.NonNull;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.peterstaranchuk.cleaningservicebusiness.R;
@@ -61,7 +62,7 @@ public class InputHelper {
     }
 
     @NonNull
-    public static String getStringFrom(EditText editText) {
+    public static String getStringFrom(TextView editText) {
         if(editText != null) {
             return editText.getText().toString();
         } else {

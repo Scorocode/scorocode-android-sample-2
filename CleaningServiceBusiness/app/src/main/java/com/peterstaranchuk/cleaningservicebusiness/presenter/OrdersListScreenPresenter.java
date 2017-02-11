@@ -26,6 +26,7 @@ public class OrdersListScreenPresenter {
         CallbackFindDocument callbackFindDocument = new CallbackFindDocument() {
             @Override
             public void onDocumentFound(List<DocumentInfo> documentInfos) {
+                documentInfos = model.filterList(documentInfos);
                 view.refreshOrdersList(documentInfos);
             }
 

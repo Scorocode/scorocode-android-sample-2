@@ -3,6 +3,7 @@ package com.peterstaranchuk.cleaningservicebusiness.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.ActionBarHelper;
@@ -73,31 +75,27 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
 
     @OnClick({R.id.ivExpandUserDetails, R.id.rlExpandUserDetails})
     public void onExpandCollapseUserSectionButtonClicked() {
-        if(AnimationHelper.isExpanded(llUserSection)) {
-            collapseSection(ivUserSectionButton, llUserSection);
-        } else {
-            expandSection(ivUserSectionButton, llUserSection);
-        }
+        presenter.onUserSectionButtonClicked();
     }
 
     @OnClick({R.id.ivExpandOrderDetails, R.id.rlExpandOrderDetails})
     public void onExpandCollapseOrderSectionButtonClicked() {
-        if(AnimationHelper.isExpanded(llOrderSection)) {
-            collapseSection(ivOrderSectionButton, llOrderSection);
-        } else {
-            expandSection(ivOrderSectionButton, llOrderSection);
-        }
+        presenter.onOrderSectionButtonClicked();
     }
 
     @OnClick({R.id.ivExpandAdditionalInfo, R.id.rlExpandAdditionalInfoDetails})
     public void onExpandCollapseAdditionalInfoSectionButtonClicked() {
-        if(AnimationHelper.isExpanded(llAdditionalInfoSection)) {
-            vDelimiter.setVisibility(View.VISIBLE);
-            collapseSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
-        } else {
-            vDelimiter.setVisibility(View.GONE);
-            expandSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
-        }
+        presenter.onAdditionalInfoSectionButtonClicked();
+    }
+
+    @OnClick(R.id.ivCall)
+    public void onPhoneButtonClicked() {
+         presenter.onPhoneButtonClicked();
+    }
+
+    @OnClick(R.id.ivMap)
+    public void onMapButtonClicked() {
+        presenter.onMapButtonClicked();
     }
 
     private void expandSection(ImageView ivExpandCollapseButton, View section) {
@@ -121,11 +119,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
         tvUserName.setText(orderData.getString(getString(R.string.fieldUserName)));
         tvUserPhone.setText(orderData.getString(getString(R.string.fieldContactPhone)));
         tvUserAddress.setText(orderData.getString(getString(R.string.fieldAddress)));
-        tvOrderPrice.setText(orderData.getString(getString(R.string.fieldOrderPrice)));
+        tvOrderPrice.setText(orderData.getString(getString(R.string.fieldOrderPrice)) + " " + getString(R.string.currencySign));
         tvPlacedAt.setText(getDateAndTimeStringFrom(orderData));
         tvNumberOfBathrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBathroomsField))));
         tvNumberOfBedrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBedroomsField))));
-        tvArea.setText(String.valueOf(orderData.getInteger(getString(R.string.areaField))));
+        tvArea.setText(String.valueOf(orderData.getInteger(getString(R.string.areaField))) + " " + getString(R.string.sqft));
+        tvOrderStatus.setText(String.valueOf(orderData.getString(getString(R.string.fieldOrderStatus))));
     }
 
     @NonNull
@@ -138,22 +137,58 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     public void setInitialState() {
         collapseSection(ivOrderSectionButton, llOrderSection);
         collapseSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
-
-        AnimationHelper.collapse(llOrderSection);
-        AnimationHelper.collapse(llAdditionalInfoSection);
-
-        btnAccept.setText(R.string.btnTextAccept);
-        btnUndoStatus.setVisibility(View.GONE);
     }
 
     @Override
-    public void setOrdersStatus(String ordersStatus) {
-        tvOrderStatus.setText(ordersStatus);
-    }
+    public void setOrdersStatus(int orderStatusCode) {
 
-    @Override
-    public void setCompleteState() {
-        btnAccept.setText(R.string.btnTextComplete);
+        String currentStatus = "";
+        String nextStatus = "";
+        boolean isUndoVisible = false;
+        boolean isUndoEnabled = false;
+
+        switch (orderStatusCode) {
+            case OrderDetailModel.STATUS_PLACED:
+                nextStatus = getString(R.string.btnTextAccept);
+                currentStatus = getString(R.string.status_placed);
+                isUndoVisible = false;
+                isUndoEnabled = false;
+                break;
+
+            case OrderDetailModel.STATUS_ACCEPTED:
+                nextStatus = getString(R.string.status_inprogress);
+                currentStatus = getString(R.string.status_accepted);
+                isUndoVisible = true;
+                isUndoEnabled = false;
+                break;
+
+            case OrderDetailModel.STATUS_IN_PROGRESS:
+                nextStatus = getString(R.string.status_completed);
+                currentStatus = getString(R.string.status_inprogress);
+                isUndoVisible = true;
+                isUndoEnabled = true;
+                break;
+
+            case OrderDetailModel.STATUS_COMPLETE:
+                currentStatus = getString(R.string.status_completed);
+                nextStatus = getString(R.string.status_completed);
+                isUndoVisible = true;
+                isUndoEnabled = true;
+                InputHelper.disableButton(btnAccept);
+                InputHelper.disableButton(btnUndoStatus);
+                break;
+        }
+
+        tvOrderStatus.setText(currentStatus);
+        btnUndoStatus.setVisibility(isUndoVisible? View.VISIBLE : View.GONE);
+        setStateButtonText(nextStatus);
+
+        if(isUndoEnabled) {
+            InputHelper.enableButton(btnUndoStatus, android.R.color.holo_red_dark);
+        } else {
+            InputHelper.disableButton(btnUndoStatus);
+        }
+
     }
 
     @Override
@@ -183,7 +218,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         presenter.setOrderCompletedState();
-                        showMoneyConfirmationDialog();
                     }
                 })
                 .setNegativeButton(R.string.no, null)
@@ -199,7 +233,53 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
         }
     }
 
-    private void showMoneyConfirmationDialog() {
+    @Override
+    public void openPhoneScreen() {
+        String phone = InputHelper.getStringFrom(tvUserPhone);
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phone));
+        startActivity(intent);
+    }
+
+    @Override
+    public void openMapScreen() {
+        String map = getString(R.string.google_map_open_link) + InputHelper.getStringFrom(tvUserAddress);
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+        startActivity(i);
+    }
+
+    @Override
+    public void expandOrCollapseUserSection() {
+        if(AnimationHelper.isExpanded(llUserSection)) {
+            collapseSection(ivUserSectionButton, llUserSection);
+        } else {
+            expandSection(ivUserSectionButton, llUserSection);
+        }
+    }
+
+    @Override
+    public void expandOrCollapseOrderSection() {
+        if(AnimationHelper.isExpanded(llOrderSection)) {
+            collapseSection(ivOrderSectionButton, llOrderSection);
+        } else {
+            expandSection(ivOrderSectionButton, llOrderSection);
+        }
+    }
+
+    @Override
+    public void expandOrCollapseAdditionalInfoSection() {
+        if(AnimationHelper.isExpanded(llAdditionalInfoSection)) {
+            vDelimiter.setVisibility(View.VISIBLE);
+            collapseSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
+        } else {
+            vDelimiter.setVisibility(View.GONE);
+            expandSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
+        }
+    }
+
+    @Override
+    public void showMoneyConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.completedTitle)
                 .setMessage(R.string.completedMessage)
@@ -212,16 +292,27 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
                 }).show();
     }
 
+    @Override
+    public void setStatusComplete() {
+        tvOrderStatus.setText(getString(R.string.status_completed));
+    }
+
+    @Override
+    public void showError(int error) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    }
+
     @OnClick(R.id.btnAccept)
     public void onBtnAcceptClicked(View v) {
         if(presenter.getCurrentStatus() == OrderDetailModel.STATUS_PLACED) {
-            showWarantDialog();
-        } else {
+            showAcceptWarrantDialog();
+        }  else {
             presenter.onSetNextStatusButtonClicked();
         }
     }
 
-    private void showWarantDialog() {
+    @Override
+    public void showAcceptWarrantDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.warningTitle)
                 .setMessage(R.string.warningMessage)

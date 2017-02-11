@@ -90,4 +90,63 @@ public class OrderDetailPresenterTest {
         //than
         verify(view).setActionBar();
     }
+
+    @Test
+    public void shouldOpenCallingScreenWhenCallButtonClicked() throws Exception {
+        //when
+        presenter.onPhoneButtonClicked();
+
+        //than
+        verify(view).openPhoneScreen();
+    }
+
+    @Test
+    public void shouldOpenGoogleMapScreenWhenMapButtonClicked() throws Exception {
+        //when
+        presenter.onMapButtonClicked();
+
+        //than
+        verify(view).openMapScreen();
+    }
+
+    @Test
+    public void shouldExpandCollapseUserSectionWhenButtonClicked() throws Exception {
+        //when
+        presenter.onUserSectionButtonClicked();
+
+        //than
+        verify(view).expandOrCollapseUserSection();
+    }
+
+    @Test
+    public void shouldExpandCollapseOrderSectionWhenButtonClicked() throws Exception {
+        //when
+        presenter.onOrderSectionButtonClicked();
+
+        //than
+        verify(view).expandOrCollapseOrderSection();
+    }
+
+    @Test
+    public void shouldExpandCollapseAdditionalInfoSectionWhenButtonClicked() throws Exception {
+        //when
+        presenter.onAdditionalInfoSectionButtonClicked();
+
+        //than
+        verify(view).expandOrCollapseAdditionalInfoSection();
+    }
+
+    @Test
+    public void shouldShowMoneyConfirmationDialogAndSetCompleteStatus() throws Exception {
+        //given
+        when(model.getOrderData(view.getIntent())).thenReturn(new DocumentInfo());
+
+        //when
+        presenter.setOrderCompletedState();
+
+        //than
+        verify(model).setNextStatus(anyString(), any(CallbackDocumentSaved.class));
+        verify(view).showMoneyConfirmationDialog();
+        verify(view).setStatusComplete();
+    }
 }

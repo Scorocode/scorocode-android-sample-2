@@ -4,8 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
+import com.peterstaranchuk.cleaningservicebusiness.helpers.DataStoreHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackFindDocument;
+import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 import ru.profit_group.scorocode_sdk.scorocode_objects.Query;
 
 /**
@@ -13,7 +18,6 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.Query;
  */
 
 public class OrdersListScreenModel {
-    public static final int STATUS_ORDER_PLACED = 0;
 
     private Context context;
 
@@ -24,7 +28,27 @@ public class OrdersListScreenModel {
     @NonNull
     public void getOrdersList(CallbackFindDocument callback) {
         Query query = new Query(context.getString(R.string.ordersCollection));
-        query.equalTo(context.getString(R.string.orderStatusField), STATUS_ORDER_PLACED);
         query.findDocuments(callback);
+    }
+
+    public List<DocumentInfo> filterList(List<DocumentInfo> documentInfos) {
+        String keyStatus = context.getString(R.string.fieldOrderStatus);
+        String keyAcceptedBy = context.getString(R.string.fieldAcceptedBy);
+        String userName = new DataStoreHelper(context).getUserName();
+
+        List<DocumentInfo> result = new ArrayList<>();
+
+        for(DocumentInfo documentInfo : documentInfos) {
+            int orderStatus = documentInfo.getInteger(keyStatus);
+            boolean firstCondition = orderStatus == OrderDetailModel.STATUS_PLACED;
+            boolean secondCondition = documentInfo.getString(keyAcceptedBy).equals(userName)
+                    && orderStatus != OrderDetailModel.STATUS_COMPLETE;
+
+            if(firstCondition || secondCondition) {
+                result.add(documentInfo);
+            }
+        }
+
+        return result;
     }
 }
