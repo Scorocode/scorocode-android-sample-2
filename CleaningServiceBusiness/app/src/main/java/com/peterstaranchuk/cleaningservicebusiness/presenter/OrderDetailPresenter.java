@@ -22,7 +22,7 @@ public class OrderDetailPresenter {
     }
 
     public void onCreate(Intent intent) {
-        view.setInitialValues();
+        view.setInitialState();
         view.setActionBar();
 
         DocumentInfo orderData = model.getOrderData(intent);
@@ -60,7 +60,7 @@ public class OrderDetailPresenter {
         if(status < OrderDetailModel.STATUS_IN_PROGRESS) {
             model.setNextStatus(orderId, callbackDocumentSaved);
         } else {
-            view.showCompletedDialog();
+            view.showWarrantDialog();
         }
 
 
@@ -98,5 +98,21 @@ public class OrderDetailPresenter {
 
     public int getCurrentStatus() {
         return model.getCurrentOrderStatus();
+    }
+
+    public void setOrderCompletedState() {
+        String orderId = model.getOrderData(view.getIntent()).getId();
+
+        model.setNextStatus(orderId, new CallbackDocumentSaved() {
+            @Override
+            public void onDocumentSaved() {
+
+            }
+
+            @Override
+            public void onDocumentSaveFailed(String errorCode, String errorMessage) {
+
+            }
+        });
     }
 }

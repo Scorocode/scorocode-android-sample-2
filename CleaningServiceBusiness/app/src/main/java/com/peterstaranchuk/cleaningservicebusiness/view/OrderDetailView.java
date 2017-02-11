@@ -12,7 +12,7 @@ public interface OrderDetailView {
 
     void setOrderData(DocumentInfo orderData, DocumentInfo userData);
 
-    void setInitialValues();
+    void setInitialState();
 
     void setOrdersStatus(String ordersStatus);
 
@@ -26,7 +26,7 @@ public interface OrderDetailView {
 
     void setStateButtonText(String status);
 
-    void showCompletedDialog();
+    void showWarrantDialog();
 
     void setActionBar();
 }

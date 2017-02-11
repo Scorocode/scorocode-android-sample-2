@@ -46,11 +46,11 @@ public class OrderDetailModel {
     }
 
     public void setNextStatus(final String orderId, final CallbackDocumentSaved callback) {
-        setStatus(orderId, currentStatus++, callback);
+        setStatus(orderId, ++currentStatus, callback);
     }
 
     public void setPreviousStatus(final String orderId, final CallbackDocumentSaved callback) {
-        setStatus(orderId, currentStatus--, callback);
+        setStatus(orderId, --currentStatus, callback);
     }
 
     private void setStatus(String orderId, final int status, final CallbackDocumentSaved callback) {

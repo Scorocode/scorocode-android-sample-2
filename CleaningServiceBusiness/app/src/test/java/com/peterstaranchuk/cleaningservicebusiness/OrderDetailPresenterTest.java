@@ -55,7 +55,7 @@ public class OrderDetailPresenterTest {
         presenter.onCreate(new Intent());
 
         //than
-        verify(view).setInitialValues();
+        verify(view).setInitialState();
     }
 
     @Test

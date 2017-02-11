@@ -10,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.ActionBarHelper;
+import com.peterstaranchuk.cleaningservicebusiness.helpers.AnimationHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FormatHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservicebusiness.model.OrderDetailModel;
@@ -37,8 +40,21 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     @BindView(R.id.tvPlacedAt) TextView tvPlacedAt;
     @BindView(R.id.tvOrderPrice) TextView tvOrderPrice;
     @BindView(R.id.tvOrderStatus) TextView tvOrderStatus;
+    @BindView(R.id.tvNumberOfBathrooms) TextView tvNumberOfBathrooms;
+    @BindView(R.id.tvNumberOfBedrooms) TextView tvNumberOfBedrooms;
+    @BindView(R.id.tvArea) TextView tvArea;
     @BindView(R.id.btnAccept) Button btnAccept;
     @BindView(R.id.btnUndoStatus) Button btnUndoStatus;
+
+    @BindView(R.id.llUserSection) LinearLayout llUserSection;
+    @BindView(R.id.llOrderSection) LinearLayout llOrderSection;
+    @BindView(R.id.llAdditionalInfoSection) LinearLayout llAdditionalInfoSection;
+
+    @BindView(R.id.ivExpandUserDetails) ImageView ivUserSectionButton;
+    @BindView(R.id.ivExpandOrderDetails) ImageView ivOrderSectionButton;
+    @BindView(R.id.ivExpandAdditionalInfo) ImageView ivAdditionalInfoSectionButton;
+    @BindView(R.id.vDelimiter) View vDelimiter;
+
 
     @BindString(R.string.textOrderStatus) String textOrderStatus;
 
@@ -55,6 +71,45 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
         presenter.onCreate(getIntent());
     }
 
+    @OnClick({R.id.ivExpandUserDetails, R.id.rlExpandUserDetails})
+    public void onExpandCollapseUserSectionButtonClicked() {
+        if(AnimationHelper.isExpanded(llUserSection)) {
+            collapseSection(ivUserSectionButton, llUserSection);
+        } else {
+            expandSection(ivUserSectionButton, llUserSection);
+        }
+    }
+
+    @OnClick({R.id.ivExpandOrderDetails, R.id.rlExpandOrderDetails})
+    public void onExpandCollapseOrderSectionButtonClicked() {
+        if(AnimationHelper.isExpanded(llOrderSection)) {
+            collapseSection(ivOrderSectionButton, llOrderSection);
+        } else {
+            expandSection(ivOrderSectionButton, llOrderSection);
+        }
+    }
+
+    @OnClick({R.id.ivExpandAdditionalInfo, R.id.rlExpandAdditionalInfoDetails})
+    public void onExpandCollapseAdditionalInfoSectionButtonClicked() {
+        if(AnimationHelper.isExpanded(llAdditionalInfoSection)) {
+            vDelimiter.setVisibility(View.VISIBLE);
+            collapseSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
+        } else {
+            vDelimiter.setVisibility(View.GONE);
+            expandSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
+        }
+    }
+
+    private void expandSection(ImageView ivExpandCollapseButton, View section) {
+        ivExpandCollapseButton.setBackground(getResources().getDrawable(R.drawable.ic_keyboard_arrow_up_black_24dp));
+        AnimationHelper.expand(section);
+    }
+
+    private void collapseSection(ImageView ivExpandCollapseButton, View section) {
+        ivExpandCollapseButton.setBackground(getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_black_24dp));
+        AnimationHelper.collapse(section);
+    }
+
     public static void display(Context context, DocumentInfo orderInfo) {
         Intent intent = new Intent(context, OrderDetailsActivity.class);
         intent.putExtra(EXTRA_ORDER_INFO, orderInfo);
@@ -68,6 +123,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
         tvUserAddress.setText(orderData.getString(getString(R.string.fieldAddress)));
         tvOrderPrice.setText(orderData.getString(getString(R.string.fieldOrderPrice)));
         tvPlacedAt.setText(getDateAndTimeStringFrom(orderData));
+        tvNumberOfBathrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBathroomsField))));
+        tvNumberOfBedrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBedroomsField))));
+        tvArea.setText(String.valueOf(orderData.getInteger(getString(R.string.areaField))));
     }
 
     @NonNull
@@ -77,7 +135,13 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     }
 
     @Override
-    public void setInitialValues() {
+    public void setInitialState() {
+        collapseSection(ivOrderSectionButton, llOrderSection);
+        collapseSection(ivAdditionalInfoSectionButton, llAdditionalInfoSection);
+
+        AnimationHelper.collapse(llOrderSection);
+        AnimationHelper.collapse(llAdditionalInfoSection);
+
         btnAccept.setText(R.string.btnTextAccept);
         btnUndoStatus.setVisibility(View.GONE);
     }
@@ -110,7 +174,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     }
 
     @Override
-    public void showCompletedDialog() {
+    public void showWarrantDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.warningTitle)
                 .setMessage(R.string.areYouSureCompletedMessage)
@@ -118,6 +182,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
                 .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        presenter.setOrderCompletedState();
                         showMoneyConfirmationDialog();
                     }
                 })

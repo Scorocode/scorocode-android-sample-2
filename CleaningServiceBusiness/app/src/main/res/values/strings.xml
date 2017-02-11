@@ -69,4 +69,11 @@
     <string name="orderDetails">ORDER DETAILS</string>
     <string name="orderDetailsTitle">Order details</string>
     <string name="ordersScreenTitle">Orders</string>
+    <string name="additionalInfo">ADDITIONAL INFO</string>
+    <string name="numberOfBedrooms">Number of bedrooms:</string>
+    <string name="numberOfBathrooms">Number of bathrooms:</string>
+    <string name="area">Area (in square foots):</string>
+    <string name="numberOfBathroomsField">numberOfBathrooms</string>
+    <string name="numberOfBedroomsField">numberOfBedrooms</string>
+    <string name="areaField">sizeInSquareFoots</string>
 </resources>

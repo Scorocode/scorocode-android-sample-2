@@ -82,4 +82,20 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="sectionTitle" parent="labelStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">@dimen/capsLabelTextSize</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="sectionIcons">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@drawable/ic_keyboard_arrow_up_black_24dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

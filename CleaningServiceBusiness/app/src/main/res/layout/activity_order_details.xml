@@ -26,46 +26,63 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    style="@style/labelStyle"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/userDetails"
-                    android:textSize="@dimen/capsLabelTextSize" />
-
-
-                <LinearLayout style="@style/order_info_linear_layout">
+                <RelativeLayout
+                    android:id="@+id/rlExpandUserDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/textUserName" />
+                        style="@style/sectionTitle"
+                        android:text="@string/userDetails" />
 
-                    <TextView
-                        android:id="@+id/tvUserName"
-                        style="@style/orderItemGray" />
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/ivExpandUserDetails"
+                        style="@style/sectionIcons" />
 
-                <LinearLayout style="@style/order_info_linear_layout">
+                </RelativeLayout>
 
-                    <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/textUserPhone" />
 
-                    <TextView
-                        android:id="@+id/tvUserPhone"
-                        style="@style/orderItemGray" />
+                <LinearLayout
+                    android:id="@+id/llUserSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                </LinearLayout>
+                    <LinearLayout style="@style/order_info_linear_layout">
 
-                <LinearLayout style="@style/order_info_linear_layout">
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textUserName" />
 
-                    <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/textUserAddress" />
+                        <TextView
+                            android:id="@+id/tvUserName"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvUserAddress"
-                        style="@style/orderItemGray" />
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textUserPhone" />
+
+                        <TextView
+                            android:id="@+id/tvUserPhone"
+                            style="@style/orderItemGray" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textUserAddress" />
+
+                        <TextView
+                            android:id="@+id/tvUserAddress"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -75,46 +92,143 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/delimiterColor" />
 
-                <TextView
-                    style="@style/labelStyle"
-                    android:layout_gravity="center_horizontal"
+                <RelativeLayout
+                    android:id="@+id/rlExpandOrderDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/sectionTitle"
+                        android:text="@string/orderDetails" />
+
+                    <ImageView
+                        android:id="@+id/ivExpandOrderDetails"
+                        style="@style/sectionIcons" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOrderSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/order_price" />
+
+                        <TextView
+                            android:id="@+id/tvOrderPrice"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/placed_at" />
+
+                        <TextView
+                            android:id="@+id/tvPlacedAt"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textOrderStatus" />
+
+                        <TextView
+                            android:id="@+id/tvOrderStatus"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginTop="16dp"
-                    android:text="@string/orderDetails"
-                    android:textSize="@dimen/capsLabelTextSize" />
+                    android:background="@color/delimiterColor" />
 
-                <LinearLayout style="@style/order_info_linear_layout">
+                <RelativeLayout
+                    android:id="@+id/rlExpandAdditionalInfoDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/order_price" />
+                        style="@style/sectionTitle"
+                        android:text="@string/additionalInfo" />
 
-                    <TextView
-                        android:id="@+id/tvOrderPrice"
-                        style="@style/orderItemGray" />
+                    <ImageView
+                        android:id="@+id/ivExpandAdditionalInfo"
+                        style="@style/sectionIcons" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAdditionalInfoSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llAdditionalInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/numberOfBedrooms" />
+
+                            <TextView
+                                android:id="@+id/tvNumberOfBedrooms"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/numberOfBathrooms" />
+
+                            <TextView
+                                android:id="@+id/tvNumberOfBathrooms"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/area" />
+
+                            <TextView
+                                android:id="@+id/tvArea"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <LinearLayout style="@style/order_info_linear_layout">
-
-                    <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/placed_at" />
-
-                    <TextView
-                        android:id="@+id/tvPlacedAt"
-                        style="@style/orderItemGray" />
-                </LinearLayout>
-
-
-                <LinearLayout style="@style/order_info_linear_layout">
-
-                    <TextView
-                        style="@style/labelStyle"
-                        android:text="@string/textOrderStatus" />
-
-                    <TextView
-                        android:id="@+id/tvOrderStatus"
-                        style="@style/orderItemGray" />
-                </LinearLayout>
+                <View
+                    android:id="@+id/vDelimiter"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/delimiterColor" />
 
                 <Button
                     android:id="@+id/btnAccept"
