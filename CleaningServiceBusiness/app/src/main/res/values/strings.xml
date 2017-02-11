@@ -67,4 +67,6 @@
     <string name="login">Login</string>
     <string name="userDetails">USER DETAILS</string>
     <string name="orderDetails">ORDER DETAILS</string>
+    <string name="orderDetailsTitle">Order details</string>
+    <string name="ordersScreenTitle">Orders</string>
 </resources>

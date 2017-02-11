@@ -50,6 +50,14 @@ public class OrdersScreenPresenterTest {
 
         //than
         verify(view).openOrderDetailsActivity(any(DocumentInfo.class));
+    }
 
+    @Test
+    public void shouldSetActionBarWhenActivityStarted() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setActionBar();
     }
 }

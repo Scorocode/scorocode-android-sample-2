@@ -87,4 +87,5 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).setActionBar();
     }
+
 }

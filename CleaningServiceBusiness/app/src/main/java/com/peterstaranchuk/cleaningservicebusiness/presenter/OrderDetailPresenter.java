@@ -23,6 +23,7 @@ public class OrderDetailPresenter {
 
     public void onCreate(Intent intent) {
         view.setInitialValues();
+        view.setActionBar();
 
         DocumentInfo orderData = model.getOrderData(intent);
         DocumentInfo userData = model.getUserData();

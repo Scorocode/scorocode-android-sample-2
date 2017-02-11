@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
+import com.peterstaranchuk.cleaningservicebusiness.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.FormatHelper;
 import com.peterstaranchuk.cleaningservicebusiness.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservicebusiness.model.OrderDetailModel;
@@ -124,6 +126,14 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
 
     }
 
+    @Override
+    public void setActionBar() {
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(getString(R.string.orderDetailsTitle));
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+        }
+    }
+
     private void showMoneyConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.completedTitle)
@@ -167,5 +177,18 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

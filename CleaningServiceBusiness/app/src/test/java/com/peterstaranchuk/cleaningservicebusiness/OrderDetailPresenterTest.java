@@ -79,6 +79,15 @@ public class OrderDetailPresenterTest {
 
         //when
         verify(model).getCurrentOrderStatus();
-        verify(model).setPreviousStatus(anyString(), any(CallbackDocumentSaved.class));
+//        verify(model).setPreviousStatus(anyString(), any(CallbackDocumentSaved.class));
+    }
+
+    @Test
+    public void shouldSetActionBarWhenActivityStarted() throws Exception {
+        //when
+        presenter.onCreate(new Intent());
+
+        //than
+        verify(view).setActionBar();
     }
 }

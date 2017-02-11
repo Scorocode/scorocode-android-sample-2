@@ -14,4 +14,6 @@ public interface OrdersListActivityView {
     void showMessage(int message);
 
     void openOrderDetailsActivity(DocumentInfo orderInfo);
+
+    void setActionBar();
 }

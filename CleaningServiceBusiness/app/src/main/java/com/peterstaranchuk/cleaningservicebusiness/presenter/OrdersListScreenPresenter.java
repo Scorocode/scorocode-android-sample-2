@@ -41,4 +41,8 @@ public class OrdersListScreenPresenter {
     public void onListItemClicked(DocumentInfo orderInfo) {
         view.openOrderDetailsActivity(orderInfo);
     }
+
+    public void onCreate() {
+        view.setActionBar();
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservicebusiness.R;
 import com.peterstaranchuk.cleaningservicebusiness.adapters.OrdersAdapter;
+import com.peterstaranchuk.cleaningservicebusiness.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservicebusiness.model.OrdersListScreenModel;
 import com.peterstaranchuk.cleaningservicebusiness.presenter.OrdersListScreenPresenter;
 import com.peterstaranchuk.cleaningservicebusiness.view.OrdersListActivityView;
@@ -34,6 +36,7 @@ public class OrdersActivity extends AppCompatActivity implements OrdersListActiv
         ButterKnife.bind(this);
 
         presenter = new OrdersListScreenPresenter(this, new OrdersListScreenModel(this));
+        presenter.onCreate();
     }
 
     @Override
@@ -69,8 +72,29 @@ public class OrdersActivity extends AppCompatActivity implements OrdersListActiv
     }
 
     @Override
+    public void setActionBar() {
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(getString(R.string.ordersScreenTitle));
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+        }
+    }
+
+    @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 

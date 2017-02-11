@@ -27,4 +27,6 @@ public interface OrderDetailView {
     void setStateButtonText(String status);
 
     void showCompletedDialog();
+
+    void setActionBar();
 }
