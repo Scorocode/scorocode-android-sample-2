@@ -11,7 +11,6 @@
     <string name="cant_login">Can\'t perform login action</string>
     <string name="appKey">d09ddf33d9d540ebbcd8eb738a5ff1d6</string>
     <string name="clientKey">9f27eaf9dd7742bb972c048525afdb08</string>
-    <string name="masterKey">0952dd1a84fb4c41989634ad858fc6de</string>
 
     <string name="key_username">username</string>
     <string name="key_user_id">userid</string>
@@ -81,4 +80,5 @@
     <string name="fieldAcceptedBy">acceptedBy</string>
     <string name="errorDuringStatusChange">Error occured during status change. Try later</string>
     <string name="refresh">refresh</string>
+    <string name="fileKey">lvCleaners.onSaveInstanceState()</string>
 </resources>
