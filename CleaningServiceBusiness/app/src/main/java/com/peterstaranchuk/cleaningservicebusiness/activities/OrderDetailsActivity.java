@@ -34,8 +34,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class OrderDetailsActivity extends AppCompatActivity implements OrderDetailView {
 
-    private static final String DELIMITER = " ";
-
     @BindView(R.id.tvUserName) TextView tvUserName;
     @BindView(R.id.tvUserAddress) TextView tvUserAddress;
     @BindView(R.id.tvUserPhone) TextView tvUserPhone;
@@ -57,8 +55,21 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
     @BindView(R.id.ivExpandAdditionalInfo) ImageView ivAdditionalInfoSectionButton;
     @BindView(R.id.vDelimiter) View vDelimiter;
 
-
     @BindString(R.string.textOrderStatus) String textOrderStatus;
+    @BindString(R.string.fieldUserName) String keyUsername;
+    @BindString(R.string.fieldContactPhone) String keyPhone;
+    @BindString(R.string.fieldAddress) String keyAddress;
+    @BindString(R.string.fieldOrderPrice) String keyPrice;
+    @BindString(R.string.numberOfBathroomsField) String fieldBathrooms;
+    @BindString(R.string.numberOfBedroomsField) String fieldBedrooms;
+    @BindString(R.string.fieldOrderStatus) String keyStatus;
+//    String keyUsername = getString(R.string.fieldUserName);
+//    String keyPhone = getString(R.string.fieldContactPhone);
+//    String keyAddress = getString(R.string.fieldAddress);
+//    String keyPrice = getString(R.string.fieldOrderPrice);
+//    String fieldBathrooms = getString(R.string.numberOfBathroomsField);
+//    String fieldBedrooms = getString(R.string.numberOfBedroomsField);
+//    String keyStatus = getString(R.string.fieldOrderStatus);
 
     public static final String EXTRA_ORDER_INFO = "EXTRA_ORDER_INFO";
     public OrderDetailPresenter presenter;
@@ -116,15 +127,29 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
 
     @Override
     public void setOrderData(DocumentInfo orderData, DocumentInfo userData) {
-        tvUserName.setText(orderData.getString(getString(R.string.fieldUserName)));
-        tvUserPhone.setText(orderData.getString(getString(R.string.fieldContactPhone)));
-        tvUserAddress.setText(orderData.getString(getString(R.string.fieldAddress)));
-        tvOrderPrice.setText(orderData.getString(getString(R.string.fieldOrderPrice)) + " " + getString(R.string.currencySign));
+        String userName = orderData.getString(keyUsername);
+        String userPhone = orderData.getString(keyPhone);
+        String userAddress = orderData.getString(keyAddress);
+        String orderPrice = orderData.getString(keyPrice) + " " + getString(R.string.currencySign);
+        String numberOfBathrooms = String.valueOf(orderData.getInteger(fieldBathrooms));
+        String numberOfBedrooms = String.valueOf(orderData.getInteger(fieldBedrooms));
+        String area = String.valueOf(orderData.getInteger(keyArea())) + " " + getString(R.string.sqft);
+        String orderStatus = String.valueOf(orderData.getString(keyStatus));
+
+        tvUserName.setText(userName);
+        tvUserPhone.setText(userPhone);
+        tvUserAddress.setText(userAddress);
+        tvOrderPrice.setText(orderPrice);
         tvPlacedAt.setText(getDateAndTimeStringFrom(orderData));
-        tvNumberOfBathrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBathroomsField))));
-        tvNumberOfBedrooms.setText(String.valueOf(orderData.getInteger(getString(R.string.numberOfBedroomsField))));
-        tvArea.setText(String.valueOf(orderData.getInteger(getString(R.string.areaField))) + " " + getString(R.string.sqft));
-        tvOrderStatus.setText(String.valueOf(orderData.getString(getString(R.string.fieldOrderStatus))));
+        tvNumberOfBathrooms.setText(numberOfBathrooms);
+        tvNumberOfBedrooms.setText(numberOfBedrooms);
+        tvArea.setText(area);
+        tvOrderStatus.setText(orderStatus);
+    }
+
+    @NonNull
+    private String keyArea() {
+        return getString(R.string.areaField);
     }
 
     @NonNull
@@ -181,7 +206,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
 
         tvOrderStatus.setText(currentStatus);
         btnUndoStatus.setVisibility(isUndoVisible? View.VISIBLE : View.GONE);
-        setStateButtonText(nextStatus);
+
+        btnAccept.setText(String.format(getString(R.string.setstate), nextStatus));
 
         if(isUndoEnabled) {
             InputHelper.enableButton(btnUndoStatus, android.R.color.holo_red_dark);
@@ -189,23 +215,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderDeta
             InputHelper.disableButton(btnUndoStatus);
         }
 
-    }
-
-    @Override
-    public void setUndoButtonVisible() {
-        btnUndoStatus.setVisibility(View.VISIBLE);
-        InputHelper.enableButton(btnUndoStatus, android.R.color.holo_red_dark);
-    }
-
-    @Override
-    public void disableUndoButton() {
-        InputHelper.disableButton(btnUndoStatus);
-    }
-
-    @Override
-    public void setStateButtonText(String status) {
-        String text = String.format(getString(R.string.setstate), status);
-        btnAccept.setText(text);
     }
 
     @Override

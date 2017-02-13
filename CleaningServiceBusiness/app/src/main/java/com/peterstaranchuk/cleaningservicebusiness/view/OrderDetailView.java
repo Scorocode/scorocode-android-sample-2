@@ -18,12 +18,6 @@ public interface OrderDetailView {
 
     Intent getIntent();
 
-    void setUndoButtonVisible();
-
-    void disableUndoButton();
-
-    void setStateButtonText(String status);
-
     void showWarrantDialog();
 
     void setActionBar();

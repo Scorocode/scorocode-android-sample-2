@@ -84,7 +84,7 @@ public class OrderDetailModel {
         return currentStatus;
     }
 
-    public void setInitialState(DocumentInfo orderData) {
+    public void setInitialOrderState(DocumentInfo orderData) {
          this.currentStatus = orderData.getInteger(context.getString(R.string.fieldOrderStatus));
     }
 }

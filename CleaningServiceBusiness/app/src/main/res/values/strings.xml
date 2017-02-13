@@ -80,4 +80,5 @@
     <string name="acceptedBy">acceptedBy</string>
     <string name="fieldAcceptedBy">acceptedBy</string>
     <string name="errorDuringStatusChange">Error occured during status change. Try later</string>
+    <string name="refresh">refresh</string>
 </resources>

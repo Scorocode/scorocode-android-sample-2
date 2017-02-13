@@ -74,7 +74,11 @@ public class OrdersAdapter extends BaseAdapter {
         }
 
         DocumentInfo order = (DocumentInfo) getItem(position);
+        customizeView(holder, order);
+        return view;
+    }
 
+    private void customizeView(ViewHolder holder, DocumentInfo order) {
         FieldHelper fieldHelper = new FieldHelper(context);
         String placedAt = fieldHelper.getPlacedAt(order);
         String orderPrice = FormatHelper.formatMoney(fieldHelper.getOrderPriceFrom(order));
@@ -84,8 +88,6 @@ public class OrdersAdapter extends BaseAdapter {
         holder.tvOrderPlaceTime.setText(getDateAndTime(placedAt));
 
         setIcon(holder, orderStatus);
-
-        return view;
     }
 
     private void setIcon(ViewHolder holder, int orderStatus) {

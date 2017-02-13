@@ -26,7 +26,7 @@ public class OrderDetailPresenter {
         DocumentInfo orderData = model.getOrderData(intent);
         DocumentInfo userData = model.getUserData();
 
-        model.setInitialState(orderData);
+        model.setInitialOrderState(orderData);
 
         view.setInitialState();
         view.setActionBar();
