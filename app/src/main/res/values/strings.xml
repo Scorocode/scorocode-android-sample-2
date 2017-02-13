@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">CleaningServiceBusiness</string>
+    <string name="loginScreenTitle">Login</string>
+
+    <string name="login_activity_email_label">Email:</string>
+    <string name="login_activity_email_edittext">Enter login</string>
+    <string name="login_activity_password_label">Password:</string>
+    <string name="login_activity_password_edittext">Enter password</string>
+    <string name="login_activity_button_login">Log In</string>
+
+    <string name="cant_login">Can\'t perform login action</string>
+    <string name="appKey">d09ddf33d9d540ebbcd8eb738a5ff1d6</string>
+    <string name="clientKey">9f27eaf9dd7742bb972c048525afdb08</string>
+
+    <string name="key_username">username</string>
+    <string name="key_user_id">userid</string>
+    <string name="clean_service_business">Clean Service \n (Business version)</string>
+
+    <string name="login_activity_password_repeat_edittext">Repeat password</string>
+    <string name="login_activity_repeat_password_label">Repeat password</string>
+    <string name="login_activity_user_name_label">User name:</string>
+    <string name="login_activity_user_name_edittext">Enter user name</string>
+
+    <string name="fieldUsername">username</string>
+    <string name="isEmployeeField">isEmployee</string>
+    <string name="ordersCollection">orders</string>
+    <string name="orderStatusField">orderStatus</string>
+    <string name="cant_getOrders">error during orders loading</string>
+    <string name="order_item_number">Order number:</string>
+    <string name="placed_at">Placed at:</string>
+    <string name="createdAtField">createdAt</string>
+
+    <string name="status_placed">placed</string>
+    <string name="status_accepted">accepted</string>
+    <string name="status_inprogress">in progress</string>
+    <string name="status_completed">completed</string>
+    <string name="status_error">can\'t get status. Please, call to our office.</string>
+    <string name="textOrderStatus">Order status:</string>
+    <string name="order_price">Order price:</string>
+    <string name="orderPriceField">orderPrice</string>
+    <string name="currencySign">$</string>
+    <string name="key_user_phone">phone</string>
+    <string name="textUserPhone">User phone:</string>
+    <string name="textUserAddress">User address:</string>
+    <string name="textUserName">User name:</string>
+    <string name="fieldUserName">userName</string>
+    <string name="fieldContactPhone">contactPhone</string>
+    <string name="fieldAddress">address</string>
+    <string name="fieldOrderPrice">orderPrice</string>
+    <string name="fieldCreatedAt">createdAt</string>
+    <string name="fieldOrderStatus">orderStatus</string>
+    <string name="btnTextAccept">ACCEPT</string>
+    <string name="undoStatus">Undo status</string>
+    <string name="btnTextComplete">Complete</string>
+    <string name="cancel">cancel</string>
+    <string name="sure">Yes, I am sure</string>
+    <string name="warningMessage">Are you sure you want to accept this order. After you click accept you can\'t decline it</string>
+    <string name="warningTitle">WARNING</string>
+    <string name="ok">ok</string>
+    <string name="completedTitle">Order completed</string>
+    <string name="completedMessage">You will get your money in your credit card in next 8 hours.</string>
+    <string name="areYouSureCompletedMessage">Are you sure the order is completed? When you will finish this order you can\'t come back to it later</string>
+    <string name="no">No</string>
+    <string name="setstate">Set %1$s state</string>
+    <string name="login">Login</string>
+    <string name="userDetails">USER DETAILS</string>
+    <string name="orderDetails">ORDER DETAILS</string>
+    <string name="orderDetailsTitle">Order details</string>
+    <string name="ordersScreenTitle">Orders</string>
+    <string name="additionalInfo">ADDITIONAL INFO</string>
+    <string name="numberOfBedrooms">Number of bedrooms:</string>
+    <string name="numberOfBathrooms">Number of bathrooms:</string>
+    <string name="area">Area:</string>
+    <string name="numberOfBathroomsField">numberOfBathrooms</string>
+    <string name="numberOfBedroomsField">numberOfBedrooms</string>
+    <string name="areaField">sizeInSquareFoots</string>
+    <string name="google_map_open_link">http://maps.google.co.in/maps?q=</string>
+    <string name="sqft">square foots</string>
+    <string name="acceptedBy">acceptedBy</string>
+    <string name="fieldAcceptedBy">acceptedBy</string>
+    <string name="errorDuringStatusChange">Error occured during status change. Try later</string>
+    <string name="refresh">refresh</string>
+    <string name="fileKey">lvCleaners.onSaveInstanceState()</string>
+</resources>

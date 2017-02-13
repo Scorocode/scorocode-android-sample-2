@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_order_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.peterstaranchuk.cleaningservicebusiness.activities.OrderDetailsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:id="@+id/rlExpandUserDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/sectionTitle"
+                        android:text="@string/userDetails"
+                        android:id="@+id/textView" />
+
+                    <ImageView
+                        android:id="@+id/ivExpandUserDetails"
+                        style="@style/sectionIcons"
+                        android:layout_alignTop="@+id/textView"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout android:id="@+id/llUserSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textUserName" />
+
+                        <TextView
+                            android:id="@+id/tvUserName"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
+
+                        <LinearLayout
+                            style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/textUserPhone" />
+
+                            <TextView
+                                android:id="@+id/tvUserPhone"
+                                style="@style/orderItemGray" />
+
+                            <LinearLayout
+                                android:gravity="right|end"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/ivCall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_call_black_24dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            style="@style/order_info_linear_layout">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/labelStyle"
+                                    android:text="@string/textUserAddress" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/tvUserAddress"
+                                    android:paddingRight="32dp"
+                                    style="@style/orderItemGray" />
+
+                            </LinearLayout>
+
+                           <ImageView
+                                    android:id="@+id/ivMap"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/ic_place_black_24dp" />
+
+
+                        </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/delimiterColor" />
+
+                <RelativeLayout
+                    android:id="@+id/rlExpandOrderDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/sectionTitle"
+                        android:text="@string/orderDetails" />
+
+                    <ImageView
+                        android:id="@+id/ivExpandOrderDetails"
+                        style="@style/sectionIcons" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOrderSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/order_price" />
+
+                        <TextView
+                            android:id="@+id/tvOrderPrice"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/placed_at" />
+
+                        <TextView
+                            android:id="@+id/tvPlacedAt"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+
+
+                    <LinearLayout style="@style/order_info_linear_layout">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:text="@string/textOrderStatus" />
+
+                        <TextView
+                            android:id="@+id/tvOrderStatus"
+                            style="@style/orderItemGray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/delimiterColor" />
+
+                <RelativeLayout
+                    android:id="@+id/rlExpandAdditionalInfoDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/sectionTitle"
+                        android:text="@string/additionalInfo" />
+
+                    <ImageView
+                        android:id="@+id/ivExpandAdditionalInfo"
+                        style="@style/sectionIcons" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAdditionalInfoSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llAdditionalInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/numberOfBedrooms" />
+
+                            <TextView
+                                android:id="@+id/tvNumberOfBedrooms"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/numberOfBathrooms" />
+
+                            <TextView
+                                android:id="@+id/tvNumberOfBathrooms"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/order_info_linear_layout">
+
+                            <TextView
+                                style="@style/labelStyle"
+                                android:text="@string/area" />
+
+                            <TextView
+                                android:id="@+id/tvArea"
+                                style="@style/orderItemGray" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/vDelimiter"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/delimiterColor" />
+
+                <Button
+                    android:id="@+id/btnAccept"
+                    style="@style/button"
+                    android:layout_marginTop="32dp" />
+
+                <Button
+                    android:id="@+id/btnUndoStatus"
+                    style="@style/button"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/holo_red_dark"
+                    android:text="@string/undoStatus" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
